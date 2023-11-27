@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+#main{
+    width: 100%;
+    height: 100%;
+    background-image: URL(https://images.unsplash.com/photo-1700556581877-a21318d4d84e?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position: center;
+    border-radius: 1%;
+    margin: .25%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+#calculatorcontainor{
+    
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    background-color: rgb(0,0,0);
+}
+#valuedisplay{
+    height: 40%;
+    color: white;  
+    background-color: rgb(0,0,0);
+    align-items: end;
+    display: flex;
+    justify-content: end;
+    padding: 6%;
+    font-size: 50px; /* Increase the font size */  
+    word-wrap: break-word; /* Fallback for older browsers */  
+    word-break: break-word; /* Enable word wrap for iOS devices */  
+}
+.num{
+    display: inline-flex;
+    width: 22%;
+    height: 11%;
+    margin-bottom: 1.5%;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(33, 30, 27);
+    color: white;
+    
+    
+}
+#numpad{
+    height: 100%;
+    margin-left: 5%;
+    
+}
+/* #imagecontainer{
+    background-color: beige;
+    width: 60%;
+    margin: 35%;
+    padding: 20%;
+} */
