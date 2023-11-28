@@ -19,10 +19,8 @@ document.addEventListener("DOMContentLoaded", function() {
   for (var i = 0; i < buttons.length; i++) {  
       buttons[i].addEventListener("click", function() {  
           var value = this.innerHTML ;
-          if(value !='='){
-            collectString=collectString+value;
-            paragraph.innerHTML=collectString
-          }else{
+
+          if(value=='='){
             //var res=calculateExpression(collectString)
             var result = calculate(collectString);  
             if (result !== null) {  
@@ -38,6 +36,18 @@ document.addEventListener("DOMContentLoaded", function() {
             } 
 
             //console.log("Result = "+res)
+          }else if(value=='C'){
+            collectString=''
+            paragraph.innerHTML=collectString
+
+          }else if(value=='CE'){
+            collectString=collectString.substring(0,collectString.length-1)
+            paragraph.innerHTML=collectString
+
+          }
+          else{
+            collectString=collectString+value;
+            paragraph.innerHTML=collectString
           }
           console.log(collectString);
           
@@ -61,71 +71,3 @@ function calculate(expression) {
   }  
 }  
   
-
-function calculateExpression(expression) {  
-  // Remove any spaces from the expression  
-  expression = expression.replace(/\s/g, "");  
-  
-  // Split the expression into an array of numbers and operators  
-  const numbersAndOperators = expression.match(/[+\-*/]?([0-9.]+)/g);  
-  
-  // Define operator precedence  
-  const precedence = {  
-    "+": 1,  
-    "-": 1,  
-    "*": 2,  
-    "/": 2  
-  };  
-  
-  // Define stacks for numbers and operators  
-  const numbersStack = [];  
-  const operatorsStack = [];  
-  
-  // Iterate over the numbers and operators array  
-  for (let i = 0; i < numbersAndOperators.length; i++) {  
-    const token = numbersAndOperators[i];  
-  
-    // If the token is a number, push it onto the numbers stack  
-    if (!isNaN(token)) {  
-      numbersStack.push(parseFloat(token));  
-    }  
-  
-    // If the token is an operator, pop operators from the operators stack until the top operator has lower precedence, then push the token onto the operators stack  
-    else {  
-      while (operatorsStack.length > 0 && precedence[operatorsStack[operatorsStack.length - 1]] >= precedence[token]) {  
-        const operator = operatorsStack.pop();  
-        const operand2 = numbersStack.pop();  
-        const operand1 = numbersStack.pop();  
-        const result = applyOperator(operator, operand1, operand2);  
-        numbersStack.push(result);  
-      }  
-      operatorsStack.push(token);  
-    }  
-  }  
-  
-  // Pop any remaining operators from the operators stack and apply them to the numbers on the numbers stack  
-  while (operatorsStack.length > 0) {  
-    const operator = operatorsStack.pop();  
-    const operand2 = numbersStack.pop();  
-    const operand1 = numbersStack.pop();  
-    const result = applyOperator(operator, operand1, operand2);  
-    numbersStack.push(result);  
-  }  
-  
-  // The final result is the only number on the numbers stack  
-  return numbersStack[0];  
-}  
-  
-function applyOperator(operator, operand1, operand2) {  
-  switch (operator) {  
-    case "+":  
-      return operand1 + operand2;  
-    case "-":  
-      return operand1 - operand2;  
-    case "*":  
-      return operand1 * operand2;  
-    case "/":  
-      return operand1 / operand2;  
-  }  
-}  
-
